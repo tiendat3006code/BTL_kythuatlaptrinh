@@ -15,6 +15,7 @@
 class Controller : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
 public:
     explicit Controller(QObject *parent = nullptr);
 
@@ -28,7 +29,7 @@ private:
 public slots:
     void serialInit();
     void serialRead();
-    void controlcar(int status);
+    Q_INVOKABLE void controlcar(int status);
 private slots:
     void handleData();
     void sendDataControl(QChar c);

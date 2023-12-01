@@ -1,4 +1,5 @@
 #include "controller.h"
+#include "config.h"
 
 Controller::Controller(QObject *parent)
     : QObject{parent}
@@ -33,12 +34,45 @@ void Controller::serialRead()
     }
 }
 
+void Controller::controlcar(int status)
+{
+    switch (status) {
+    case FORWARD:
+        sendDataControl('f');
+        break;
+    case BACKWARD:
+        sendDataControl('b');
+        break;
+    case STOP:
+        sendDataControl('s');
+        break;
+    case RIGHT:
+        sendDataControl('r');
+        break;
+    case LEFT:
+        sendDataControl('l');
+        break;
+    default:
+        break;
+    }
+}
+
 void Controller::handleData()
 {
-    RxBuffer = port->readAll();
+    RxBuffer.append(port->readAll());
+    if(RxBuffer.length() >= 4){
+        qInfo()<<RxBuffer.toInt();
+        RxBuffer.clear();
+        port->clear();
+    }
+}
+
+void Controller::sendDataControl(QChar c)
+{
+    QByteArray arrayToSend;
+    arrayToSend.append(c);
+    port->write(arrayToSend);
     port->flush();
-    port->waitForReadyRead(10);
-    qInfo()<<RxBuffer;
-    RxBuffer.clear();
+    port->waitForBytesWritten(5);
     port->clear();
 }
