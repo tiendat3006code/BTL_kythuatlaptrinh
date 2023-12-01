@@ -8,6 +8,9 @@
 #include <QSerialPort>
 #include <QThread>
 #include <QString>
+#include <QChar>
+#include <qqml.h>
+#include <QtQml/QtQml>
 
 class Controller : public QObject
 {
@@ -25,8 +28,10 @@ private:
 public slots:
     void serialInit();
     void serialRead();
+    void controlcar(int status);
 private slots:
     void handleData();
+    void sendDataControl(QChar c);
 };
 
 #endif // CONTROLLER_H
