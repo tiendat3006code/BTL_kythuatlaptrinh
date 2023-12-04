@@ -23,6 +23,7 @@ void Controller::serialInit()
     }
     else{
         qInfo()<<"OPEN PORT SUCCESS";
+        setPower(255);
     }
 }
 

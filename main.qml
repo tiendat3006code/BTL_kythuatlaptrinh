@@ -54,6 +54,27 @@ Window {
                 console.log("left")
             }
         }
+
+        Slider{
+            id:spinboxID
+            from: 0
+            to: 255
+            onValueChanged: {
+                console.log("Speed: " + value)
+            }
+        }
+
+        Text {
+            id: spinboxvaluedisplay
+            text: Math.floor(spinboxID.value)
+        }
+        Button{
+            text: " Set car power"
+            onClicked: {
+                console.log("Speed: " + spinboxID.value)
+                controller.setPower(Math.floor(spinboxID.value))
+            }
+        }
     }
 
 
