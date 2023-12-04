@@ -3,28 +3,59 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.5
 
 Window {
-    width: 640
-    height: 480
+    width: Screen.width
+    height: Screen.height
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Control Car")
 
-    Rectangle{
-        id: rect_1
-        width: 200
-        height: 200
+
+    Column{
         anchors.centerIn: parent
-        color: "red"
-        radius : width
+        spacing: 10
+        id: culumnButton
 
-        MouseArea {
-            id: mouseArea
-            width: 100
-            height: 100
-            anchors.fill: parent
-
-            onPressed: rect_1.color = "blue"
-            onReleased: rect_1.color = "red"
+        Button{
+            id: forward
+            text: "FORWARD"
+            onClicked: {
+                controller.controlcar(1)
+                console.log("forward")
+            }
         }
-
+        Button{
+            id: backward
+            text: "BACKWARD"
+            onClicked: {
+                controller.controlcar(-1)
+                console.log("backward")
+            }
+        }
+        Button{
+            id: stop
+            text: "STOP"
+            onClicked: {
+                controller.controlcar(0)
+                console.log("stop")
+            }
+        }
+        Button{
+            id: right
+            text: "RIGHT"
+            onClicked: {
+                controller.controlcar(2)
+                console.log("right")
+            }
+        }
+        Button{
+            id: left
+            text: "LEFT"
+            onClicked: {
+                controller.controlcar(3)
+                console.log("left")
+            }
+        }
     }
+
+
+
 }

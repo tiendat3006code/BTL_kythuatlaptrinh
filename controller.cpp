@@ -37,24 +37,46 @@ void Controller::serialRead()
 void Controller::controlcar(int status)
 {
     switch (status) {
-    case FORWARD:
+    case FORWARD:{
+        qInfo()<<"car move forward";
         sendDataControl('f');
         break;
-    case BACKWARD:
+    }
+    case BACKWARD:{
+        qInfo()<<"car move backward";
         sendDataControl('b');
         break;
-    case STOP:
+    }
+    case STOP:{
         sendDataControl('s');
+        qInfo()<<"car stop";
         break;
-    case RIGHT:
+    }
+    case RIGHT:{
+        qInfo()<<"car move right";
         sendDataControl('r');
         break;
-    case LEFT:
+    }
+    case LEFT:{
+        qInfo()<<"car move left";
         sendDataControl('l');
         break;
+    }
     default:
         break;
     }
+}
+
+void Controller::setPower(int power)
+{
+    QByteArray dataToSend;
+    dataToSend.append(POWER);
+    dataToSend.append(power);
+
+    port->write(dataToSend);
+    port->flush();
+    // port->waitForBytesWritten(5);
+    port->clear();
 }
 
 void Controller::handleData()
@@ -70,9 +92,9 @@ void Controller::handleData()
 void Controller::sendDataControl(QChar c)
 {
     QByteArray arrayToSend;
-    arrayToSend.append(c);
+    arrayToSend.append(c.toLatin1());
     port->write(arrayToSend);
     port->flush();
-    port->waitForBytesWritten(5);
+    // port->waitForBytesWritten(5);
     port->clear();
 }
