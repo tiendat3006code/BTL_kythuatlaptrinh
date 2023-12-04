@@ -92,6 +92,7 @@ void Controller::handleData()
 void Controller::sendDataControl(QChar c)
 {
     QByteArray arrayToSend;
+    arrayToSend.append(CONTROL);
     arrayToSend.append(c.toLatin1());
     port->write(arrayToSend);
     port->flush();
