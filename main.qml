@@ -1,82 +1,81 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.5
+import QtQuick.Controls.Styles 1.4
+import QtQuick.Extras 1.4
 
 Window {
     width: Screen.width
     height: Screen.height
     visible: true
     title: qsTr("Control Car")
+    color: "black"
+    id: root
+    // visibility: Window.FullScreen
 
+    property int power: Math.floor(powerSlider.value)
 
-    Column{
-        anchors.centerIn: parent
-        spacing: 10
-        id: culumnButton
+    Rectangle{
+        width: 600
+        height: 600
+        color: "black"
+        x: 50
+        y: 50
+        CircularGauge{
+            id: speedGauge
+            anchors.fill: parent
+            minimumValue: 0
+            maximumValue: 255
+            value: power
 
-        Button{
-            id: forward
-            text: "FORWARD"
-            onClicked: {
-                controller.controlcar(1)
-                console.log("forward")
+            Text {
+                id: powerText
+                anchors.horizontalCenter: speedGauge.horizontalCenter
+                anchors.bottom: parent.bottom
+                text: "Power: " + Math.floor(power/255*100) + " %"
+                font.pointSize: 25
+                color: "white"
             }
         }
-        Button{
-            id: backward
-            text: "BACKWARD"
-            onClicked: {
-                controller.controlcar(-1)
-                console.log("backward")
-            }
-        }
-        Button{
-            id: stop
-            text: "STOP"
-            onClicked: {
-                controller.controlcar(0)
-                console.log("stop")
-            }
-        }
-        Button{
-            id: right
-            text: "RIGHT"
-            onClicked: {
-                controller.controlcar(2)
-                console.log("right")
-            }
-        }
-        Button{
-            id: left
-            text: "LEFT"
-            onClicked: {
-                controller.controlcar(3)
-                console.log("left")
-            }
-        }
-
+    }
+    Rectangle{
+        // anchors.horizontalCenter: root.horizontalCenter
+        anchors.horizontalCenter: parent.horizontalCenter
+        y: parent.height - height - 100
+        width: 400
+        height: 30
+        color: "black"
+        id: powerRect
         Slider{
-            id:spinboxID
             from: 0
             to: 255
-            onValueChanged: {
-                console.log("Speed: " + value)
+            stepSize: 5
+            focus: true
+            id: powerSlider
+            anchors.fill: parent
+            Keys.onUpPressed: {
+                console.log("up key pressed")
+                value + 5
             }
-        }
-
-        Text {
-            id: spinboxvaluedisplay
-            text: Math.floor(spinboxID.value)
-        }
-        Button{
-            text: " Set car power"
-            onClicked: {
-                console.log("Speed: " + spinboxID.value)
-                controller.setPower(Math.floor(spinboxID.value))
+            Keys.onDownPressed: {
+                console.log("down key pressed")
+                value - 5
+            }
+            Keys.onEnterPressed: control.setPower(power)
+            onValueChanged: {
+                console.log(value)
             }
         }
     }
 
-
+    Button{
+        id: setPowerButton
+        anchors.horizontalCenter: parent.horizontalCenter
+        y: parent.height - powerRect.height - 50
+        text: "SET POWER"
+        onClicked: {
+            control.setPower(power)
+        }
+    }
 
 }

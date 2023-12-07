@@ -76,8 +76,9 @@ void Controller::setPower(int power)
 
     port->write(dataToSend);
     port->flush();
-    // port->waitForBytesWritten(5);
     port->clear();
+    // port->waitForBytesWritten(5);
+    qInfo()<<"Set power";
 }
 
 void Controller::handleData()
