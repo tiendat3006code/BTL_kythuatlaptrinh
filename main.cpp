@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     control.serialInit();
     control.serialRead();
     //add to the root context
-    engine.rootContext()->setContextProperty("control", &control);
+    engine.rootContext()->setContextProperty("Car", &control);
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
         &app, [url](QObject *obj, const QUrl &objUrl) {
