@@ -26,11 +26,13 @@ private:
     QByteArray RxBuffer;
     QString port_name = "/dev/ttyUSB";
     int port_count = 0;
+    int sensorResult;
 public slots:
     void serialInit();
     void serialRead();
-    void controlcar(int status);
+    void controlCar(int status);
     void setPower(int power);
+    int getSensorResult();
 private slots:
     void handleData();
     void sendDataControl(QChar c);

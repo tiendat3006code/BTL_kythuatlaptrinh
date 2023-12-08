@@ -34,23 +34,23 @@ Button{
 
     function clickedEvent(state){
         if(state === 1){
-            Car.controlcar(1)
+            Car.controlCar(1)
             console.log("Car move forward")
         }
         else if(state === -1){
-            Car.controlcar(-1)
+            Car.controlCar(-1)
             console.log("Car move backward")
         }
         else if(state === 0){
-            Car.controlcar(0)
+            Car.controlCar(0)
             console.log("Car stop")
         }
         else if(state === 2){
-            Car.controlcar(2)
+            Car.controlCar(2)
             console.log("Car move right")
         }
         else if(state === 3){
-            Car.controlcar(3)
+            Car.controlCar(3)
             console.log("Car move left")
         }
         else {

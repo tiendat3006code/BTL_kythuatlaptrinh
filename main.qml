@@ -29,6 +29,10 @@ Window {
             maximumValue: 255
             value: power
 
+            style: CircularGaugeStyle{
+                labelStepSize: 20
+            }
+
             Text {
                 id: powerText
                 anchors.horizontalCenter: speedGauge.horizontalCenter
@@ -50,17 +54,29 @@ Window {
             id: sensorGauge
             anchors.fill: parent
             minimumValue: 0
-            maximumValue: 100
+            maximumValue: 1000
             // labelStepSize: 10
-            value: power
+            style: CircularGaugeStyle{
+                labelStepSize: 100
+            }
 
             Text {
                 id: sensorText
                 anchors.horizontalCenter: sensorGauge.horizontalCenter
                 anchors.bottom: parent.bottom
-                text: "SENSOR VALUE: " + Math.floor(power/255*100)
+                text: "SENSOR VALUE: " + Car.getSensorResult()
                 font.pointSize: 25
                 color: "white"
+
+            }
+            Timer{
+                interval: 100
+                running: true
+                repeat: true
+                onTriggered: {
+                    sensorText.text = "Sensor value: " + Car.getSensorResult() + " ppm"
+                    sensorGauge.value = Car.getSensorResult()
+                }
             }
         }
     }

@@ -23,7 +23,7 @@ void Controller::serialInit()
     }
     else{
         qInfo()<<"OPEN PORT SUCCESS";
-        setPower(255);
+        setPower(0);
     }
 }
 
@@ -35,7 +35,7 @@ void Controller::serialRead()
     }
 }
 
-void Controller::controlcar(int status)
+void Controller::controlCar(int status)
 {
     switch (status) {
     case FORWARD:{
@@ -81,14 +81,22 @@ void Controller::setPower(int power)
     qInfo()<<"Set power";
 }
 
+int Controller::getSensorResult()
+{
+    return sensorResult;
+}
+
 void Controller::handleData()
 {
     RxBuffer.append(port->readAll());
-    if(RxBuffer.length() >= 4){
-        qInfo()<<RxBuffer.toInt();
+    if(RxBuffer.at(RxBuffer.length() - 1) == 0x0A){
+        QString str = RxBuffer.mid(0, RxBuffer.length() - 2);
+        sensorResult = str.toInt();
+        // qInfo()<<sensorResult;
         RxBuffer.clear();
         port->clear();
     }
+
 }
 
 void Controller::sendDataControl(QChar c)
