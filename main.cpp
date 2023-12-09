@@ -13,8 +13,6 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     QQuickStyle::setStyle("Material");
     Controller control;
-    control.serialInit();
-    control.serialRead();
     //add to the root context
     engine.rootContext()->setContextProperty("Car", &control);
     const QUrl url(QStringLiteral("qrc:/main.qml"));
