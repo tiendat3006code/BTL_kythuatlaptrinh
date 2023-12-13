@@ -91,12 +91,19 @@ void Controller::handleData()
     RxBuffer.append(port->readAll());
     if(RxBuffer.at(RxBuffer.length() - 1) == 0x0A){
         QString str = RxBuffer.mid(0, RxBuffer.length() - 2);
-        sensorResult = str.toInt();
-        // qInfo()<<sensorResult;
+        result.append(str.toInt());
+        // sensorResult = str.toInt();
         RxBuffer.clear();
         port->clear();
     }
-
+    if(result.length() == 10){
+        int temp = 0;
+        foreach (int a, result) {
+            temp = temp + a;
+        }
+        sensorResult = temp / 10;
+        result.clear();
+    }
 }
 
 void Controller::sendDataControl(QChar c)

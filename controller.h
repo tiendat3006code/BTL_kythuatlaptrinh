@@ -11,6 +11,7 @@
 #include <QChar>
 #include <qqml.h>
 #include <QtQml/QtQml>
+#include <QList>
 
 class Controller : public QObject
 {
@@ -27,6 +28,7 @@ private:
     QString port_name = "/dev/ttyUSB";
     int port_count = 0;
     int sensorResult;
+    QList<int> result;
 public slots:
     void serialInit();
     void serialRead();
