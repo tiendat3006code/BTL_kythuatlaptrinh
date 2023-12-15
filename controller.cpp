@@ -1,5 +1,4 @@
 #include "controller.h"
-#include "config.h"
 
 Controller::Controller(QObject *parent)
     : QObject{parent}
