@@ -24,8 +24,8 @@ Item {
                 id: speedGauge
                 anchors.fill: parent
                 minimumValue: 0
-                maximumValue: 255
-                value: power
+                maximumValue: 440
+                value: power * 440 / 255
 
                 style: CircularGaugeStyle{
                     labelStepSize: 20
@@ -35,7 +35,7 @@ Item {
                     id: powerText
                     anchors.horizontalCenter: speedGauge.horizontalCenter
                     anchors.bottom: parent.bottom
-                    text: "Power: " + Math.floor(power/255*100) + " %"
+                    text: "Speed: " + Math.floor(power * 440 / 255) + " cm/p"
                     font.pointSize: 25
                     color: "white"
                 }

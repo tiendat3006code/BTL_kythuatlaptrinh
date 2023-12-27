@@ -123,7 +123,7 @@ Item {
             onClicked: {
                 Car.serialInit()
                 Car.serialRead()
-                stackView.push("ControlView.qml")// This is available in all editors.
+                stackView.push("ControlView.qml")
                 parent.color = "black"
             }
         }
