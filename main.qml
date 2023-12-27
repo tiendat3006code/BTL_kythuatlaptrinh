@@ -20,19 +20,7 @@ ApplicationWindow {
 
         // Add transitions between pages
         pushEnter: Transition {
-            PropertyAnimation { properties: "opacity"; from: 0; to: 1; duration: 500 }
-        }
-
-        popEnter: Transition {
-            PropertyAnimation { properties: "opacity"; from: 0; to: 1; duration: 500 }
-        }
-
-        pushExit: Transition {
-            PropertyAnimation { properties: "opacity"; from: 1; to: 0; duration: 500 }
-        }
-
-        popExit: Transition {
-            PropertyAnimation { properties: "opacity"; from: 1; to: 0; duration: 500 }
+            PropertyAnimation { properties: "opacity"; from: 0; to: 1; duration: 1000 }
         }
     }
 }
