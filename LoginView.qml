@@ -121,8 +121,8 @@ Item {
                 anchors.centerIn: parent
             }
             onClicked: {
-                // Car.serialInit()
-                // Car.serialRead()
+                Car.serialInit()
+                Car.serialRead()
                 stackView.push("ControlView.qml")
                 parent.color = "black"
             }
