@@ -103,7 +103,7 @@ Item {
             color: "#C0C0C0"
             Text {
                 id: gvText
-                text: "Giang vien huong dan: TS. Nguyen Xuan Thuan"
+                text: "Giang vien huong dan: TS.Nguyen Xuan Thuan"
                 font.pointSize: 30
                 anchors.fill: parent
             }
@@ -121,8 +121,8 @@ Item {
                 anchors.centerIn: parent
             }
             onClicked: {
-                Car.serialInit()
-                Car.serialRead()
+                // Car.serialInit()
+                // Car.serialRead()
                 stackView.push("ControlView.qml")
                 parent.color = "black"
             }
