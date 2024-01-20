@@ -7,5 +7,9 @@
         <file>ControlView.qml</file>
         <file>LoginView.qml</file>
         <file>logo.png</file>
+        <file>Frm02.gif</file>
+        <file>jpeg</file>
+        <file>paper.jpg</file>
+        <file>wall.jpg</file>
     </qresource>
 </RCC>

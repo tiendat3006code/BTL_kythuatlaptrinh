@@ -1,6 +1,8 @@
 QT += quick
 QT += serialport
 QT += quickcontrols2
+QT += multimedia
+
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.

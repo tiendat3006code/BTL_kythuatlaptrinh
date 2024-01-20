@@ -3,7 +3,7 @@ import QtQuick.Controls 2.5
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Extras 1.4
 import QtQuick.Layouts 1.3
-
+import QtMultimedia 5.15
 
 Item {
     property int power: Math.floor(powerSlider.value)
@@ -13,11 +13,16 @@ Item {
     Rectangle{
         width: parent.width
         height: parent.height
-        color: "black"
+        Image {
+            id: controlBackground
+            source: "qrc:/paper.jpg"
+            anchors.fill: parent
+        }
+
         Rectangle{
             width: 600
             height: 600
-            color: "black"
+            color: "transparent"
             x: 50
             y: 50
             CircularGauge{
@@ -45,7 +50,7 @@ Item {
         Rectangle{
             width: 600
             height: 600
-            color: "black"
+            color: "transparent"
             x: parent.width - 650
             y: 50
             CircularGauge{
@@ -80,12 +85,11 @@ Item {
         }
 
         Rectangle{
-            // anchors.horizontalCenter: root.horizontalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             y: parent.height - height - 150
             width: 500
             height: 50
-            color: "black"
+            color: "transparent"
             id: powerRect
             Slider{
                 from: 0
@@ -126,7 +130,7 @@ Item {
             y: 150
             width: 500
             height: 500
-            color: "black"
+            color: "transparent"
             id: rectButton
 
             Keys.onPressed: {
@@ -227,7 +231,7 @@ Item {
             anchors.top: parent.top
             width: 600
             height: 100
-            color: "black"
+            color: "transparent"
 
             Text {
                 id: clock
@@ -255,7 +259,7 @@ Item {
                 width: 150
                 height: 100
                 anchors.left: parent.left
-                color: "black"
+                color: "transparent"
                 Image {
                     id: turnLeftImg
                     source: "qrc:/Turn_Left.png"
@@ -268,7 +272,7 @@ Item {
                 width: 150
                 height: 100
                 anchors.right: parent.right
-                color: "black"
+                color: "transparent"
                 Image {
                     id: turnRightImg
                     source: "qrc:/Turn_Right.png"
