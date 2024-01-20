@@ -134,7 +134,6 @@ Item {
                 source: "qrc:/Frm02.gif"
                 fillMode: Image.PreserveAspectCrop
                 smooth: true
-                // loops: Animation.Infinite
             }
 
             MouseArea{
